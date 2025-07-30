@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+The file name should start with a lowercase letter.
+The file name must be multi-word.
+use textBoxTheme.ts file to apply textbox style while creating new ".tsx" file.
