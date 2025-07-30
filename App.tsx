@@ -22,6 +22,10 @@ import LoginScreen from './components/LoginScreen';
 import CategoriesScreen from './components/CategoriesScreen';
 import AccountScreen from './components/AccountScreen';
 import xyzScreen from './components/xyzScreen';
+import EmployeeScreen from './components/employeeScreen';
+import MemberScreen from './components/memberScreen';
+import UserProfileScreen from './components/userProfileScreen';
+import SettingsScreen from './components/settingsScreen';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 enableScreens();
@@ -29,7 +33,66 @@ enableScreens();
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Remove MainTabs, use stack navigation for category -> home
+// Create the main tabs component
+const MainTabs = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#A259F7',
+        tabBarInactiveTintColor: '#gray',
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopWidth: 1,
+          borderTopColor: '#e0e0e0',
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
+      }}
+    >
+      <Tab.Screen 
+        name="Employee" 
+        component={EmployeeScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>👥</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Member" 
+        component={MemberScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>🏆</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Profile" 
+        component={UserProfileScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>👤</Text>
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Settings" 
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Text style={{ fontSize: size, color }}>⚙️</Text>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default function App() {
   return (
@@ -38,6 +101,7 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="xyzScreen" component={MainTabs} options={{ headerShown: false }} />
             <Stack.Screen
               name="Categories"
               component={CategoriesScreen}
